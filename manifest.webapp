@@ -1,0 +1,53 @@
+{
+  "name": "Alarm app",
+  "description": "A template with the bare minimum structure",
+  "launch_path": "/index.html",
+  "type": "privileged",
+  "permissions": {
+    "nfc":{ "access": "readwrite" },
+    "settings":{ "access": "readwrite" },
+    "alarms": {
+      "description": "Required to schedule alarms"
+    }
+  },
+  "messages": [
+    { "alarm": "/index.html" }
+  ],
+  "developer": {
+    "name": "Your name",
+    "url": "http://example.com"
+  },
+  "icons": {
+    "16": "/img/icons/icon16x16.png",
+    "48": "/img/icons/icon48x48.png",
+    "60": "/img/icons/icon60x60.png",
+    "128": "/img/icons/icon128x128.png"
+  },
+  "default_locale": "en",
+  "locales": {
+    "es": {
+      "name": "Aplicación vacía privilegiada",
+      "description": "Una plantilla con la mínima estructura"
+    }
+  },
+  "activities": {
+    "nfc-tech-lost": {
+      "filters": {
+        "type": "info"
+      }
+    },
+    "nfc-ndef-discovered": {
+      "filters": {
+        "type": ["device", "empty", "external-type", "mail",
+                 "smartposter", "smartposter-action",
+                 "text/vcard", "text",
+                 "webcontacts/contact", "webcontacts/email",
+                 "webtelephony/number", "websms/sms",
+                 "uri",
+                 "*"
+                ]
+      }
+    },
+    "nfc-tag-discovered": {}
+  }
+}

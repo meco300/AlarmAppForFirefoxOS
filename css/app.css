@@ -1,0 +1,62 @@
+html, body {
+  margin: 0;
+  /*padding: 0.5rem;*/
+}
+
+body {
+  font-size: 1rem;
+  background: url("/assets/main_back.png");
+  background-size: contain;
+}
+
+h1 {
+  margin: 0 0 1rem 0;
+}
+
+p {
+  font-size: inherit;
+}
+
+.timeWrapper{
+    margin-top: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: white;
+    width: 100%;
+}
+.timeView{
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    width: 260px;
+    overflow: hidden;
+}
+
+#setTimeMsg{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+}
+select {
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: white;
+    vertical-align: middle;
+    font-size: 80px;
+    color: inherit;
+    box-sizing: content-box;
+    float: left;
+}
+#timeSetButton{
+    margin-top: 120px;
+    background: #FEAB29;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+}
