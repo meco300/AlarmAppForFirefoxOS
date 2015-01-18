@@ -87,11 +87,12 @@ var toDoubleDigits = function(num) {
  return num;     
 };
 
-// 音の設定
+// 音源の設定
 var musicplayer;
 musicplayer = new Audio('assets/alarmSound.mp3');
 musicplayer.loop = true;
 
+// 音を鳴らす
 function playMusic(){
     try{
         musicplayer.play();
@@ -101,17 +102,21 @@ function playMusic(){
     }
 }
 
+// 音を止める
 function stopMusic(){
     musicplayer.pause();
 }
 
+// devicemotionイベントを受け取った時に実行する
 function handleMotionEvent(event){
     var x = event.accelerationIncludingGravity.x;
     var y = event.accelerationIncludingGravity.y;
     var z = event.accelerationIncludingGravity.z;
-    
+
+    // シェイクの判定
     var isShake = detectShake(x,y,z);
     if(isShake){
+        // シェイクされていたら音を止めて、devicemotionイベントの登録を削除する
         stopMusic();
         window.removeEventListener("devicemotion", handleMotionEvent, true);
         componentChanger(true);
@@ -119,6 +124,7 @@ function handleMotionEvent(event){
     }
 }
 
+// シェイクの判定ロジック
 var SPEED_THRESHOLD = 40;
 var SHAKE_TIMEOUT = 500;
 var SHAKE_DURATION = 3000;
@@ -160,6 +166,7 @@ function detectShake(x, y, z){
     return isShaked;
 }
 
+// アラーム設定ボタン、音を止めるボタンの表示きりかえ
 function componentChanger(isAlarmSetting){
     var alarmSetSection = document.getElementById("alarmSet");
     var alarmStopSection = document.getElementById("alarmStop");
