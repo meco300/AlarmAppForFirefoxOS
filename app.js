@@ -149,7 +149,6 @@ function detectShake(x, y, z){
 
     var diff = now - mLastTime;
     var speed = Math.abs(x + y + z - mLastX - mLastY - mLastZ) / diff * 10000;
-    sensorArea.innerHTML = "speed:" + speed;
 
     if(speed > SPEED_THRESHOLD){
         if(++mShakeCount >= SHAKE_COUNT && now - mLastShake > SHAKE_DURATION){
