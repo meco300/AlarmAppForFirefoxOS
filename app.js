@@ -1,3 +1,4 @@
+// アプリ起動時に実行されるメソッドを登録
 window.addEventListener("load", function() {
   console.log("Hello World!");
   
@@ -5,29 +6,36 @@ window.addEventListener("load", function() {
 });
 
 function init(){
+  // アラームで呼ばれた時に実行するメソッドを登録
   navigator.mozSetMessageHandler('alarm', AlarmActivityHandler);
-  
+
+  // input timeの初期値
   var time = document.getElementById("time");
   var timeSetButton = document.getElementById("timeSetButton");
 
   var today = new Date();
   time.defaultValue = toDoubleDigits(today.getHours()) + ":" + toDoubleDigits(today.getMinutes());
-  
+
+  // アラーム設定ボタンが押された時に呼ばれる
   timeSetButton.onclick = function(){
     console.log(time.value);
     setAlarm();
   };
-    
+
+    // 音を止めるボタンが押された時に呼ばれる
     var stopMusicButton = document.getElementById("stopMusicButton");
     stopMusicButton.onclick = function(){
         stopMusic();
         componentChanger(true);
     }
-    
+
+    // アラーム設定ボタンを表示
     componentChanger(true);
 }
 
+// アラームの設定
 function setAlarm(){
+    // 設定時間を取得
     var time = document.getElementById("time");
     var timeList = time.value.split(":");
     
@@ -41,10 +49,12 @@ function setAlarm(){
       alarmTime.setDate(today.getDate() + 1);
     }
 
+    // mozAlarmに時間を登録
     var data = {foo: "bar"};
     var request = navigator.mozAlarms.add(alarmTime, "ignoreTimezone", data);
 
     request.onsuccess = function () {
+      // 登録完了時
       alert("アラームを設定しました！");
     };
     request.onerror = function () {
@@ -52,6 +62,7 @@ function setAlarm(){
     };
 }
 
+// アラームが呼ばれた時に実行される
 function AlarmActivityHandler(mozAlarm) {
     playMusic();
     window.addEventListener("devicemotion", handleMotionEvent, true);
@@ -67,7 +78,7 @@ function AlarmActivityHandler(mozAlarm) {
     }
 }
 
-// 1桁の数字を0埋めで2桁にする
+// 1桁の数字を0埋めで2桁にするメソッド
 var toDoubleDigits = function(num) {
   num += "";
   if (num.length === 1) {
@@ -76,6 +87,7 @@ var toDoubleDigits = function(num) {
  return num;     
 };
 
+// 音の設定
 var musicplayer;
 musicplayer = new Audio('assets/alarmSound.mp3');
 musicplayer.loop = true;
